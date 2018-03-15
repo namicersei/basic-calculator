@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calculator</title>
+	<link rel="stylesheet" href="index.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+</head>
+<body>
+
+<div class="wrapper">
+	<div class="screen">
+<input type="text" id="num_input" value=""></div>
+
+<div class="keypad">
+	<div class="row">
+		<div class="col" onclick="clear_global()">CE</div>
+		<div class="col" onclick="clear_global()">C</div>
+		<div class="col" onclick="delete_text()"><i class="fa fa-eraser"></i></div>
+		<div class="col" onclick="add_text(this)">/</div>
+	</div>
+	<div class="row">
+		<div class="col" onclick="add_text(this)">7</div>
+		<div class="col" onclick="add_text(this)">8</div>
+		<div class="col" onclick="add_text(this)">9</div>
+		<div class="col" onclick="add_text(this)" >*</div>
+	</div>
+	<div class="row">
+		<div class="col" onclick="add_text(this)">4</div>
+		<div class="col" onclick="add_text(this)">5</div>
+		<div class="col" onclick="add_text(this)">6</div>
+		<div class="col" onclick="add_text(this)">-</div>
+	</div>
+	<div class="row">
+		<div class="col" onclick="add_text(this)">1</div>
+		<div class="col" onclick="add_text(this)">2</div>
+		<div class="col" onclick="add_text(this)">3</div>
+		<div class="col" onclick="add_text(this)">+</div>
+	</div>
+	<div class="row">
+		<div class="col" onclick="add_text(this)">0</div>
+		<div class="col" onclick="add_text(this)">.</div>
+		<div class="col" onclick="calculate()">eq</div>
+		<div class="col" onclick="calculate()">%</div>
+	</div>
+	
+
+</div>
+</div>
+
+<script>
+function add_text(id)
+{
+	if(document.getElementById("num_input").value=="0")
+	{
+		document.getElementById("num_input").value=id.innerHTML;
+	}
+else{
+	document.getElementById("num_input").value+=id.innerHTML;
+}
+
+
+}
+
+function clear_global()
+{
+document.getElementById("num_input").value="0";
+
+}
+
+function delete_text()
+{
+	var x=document.getElementById("num_input");
+	if(!x)
+		{ }
+	else
+	{
+		var str=document.getElementById("num_input").value;
+		
+		var substr=str.slice(0,-1);
+	}
+x.value=substr;
+}
+
+
+function calculate()
+{
+	var x=document.getElementById("num_input");
+
+	if(!x)
+	{
+
+	}
+	else
+	{
+		var str=x.value;
+		var pos;
+		var op;
+
+		if(str.indexOf('*') >-1)
+		{
+			pos=str.indexOf('*');
+			op=str[pos];
+		}
+		else if(str.indexOf('-') >-1)
+		{
+			pos=str.indexOf('-');
+			op=str[pos];
+		}
+		else if(str.indexOf('+') >-1)
+		{
+			pos=str.indexOf('+');
+			op=str[pos];
+		}
+		else if(str.indexOf('/')>-1)
+		{
+			 pos=str.indexOf('/');
+			 op=str[pos];
+		}
+		
+
+
+var a=str.substring(0,pos);
+var num1=parseInt(a);
+
+var b=str.substring(pos+1,str.length);
+var num2=parseInt(b);
+
+if(op=='*')
+{
+	x.value=num1*num2;
+}
+
+if(op=='+')
+{
+	x.value=num1+num2;
+}
+
+if(op=='-')
+{
+	x.value=num1-num2;
+}
+
+if(op=='/')
+{
+	x.value=num1/num2;
+}
+
+	}
+}
+
+</script>
+
+</body>
+
+</html>
